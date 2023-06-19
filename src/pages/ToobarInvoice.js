@@ -104,19 +104,17 @@ const VerticalSidebar = ({authToken, user, handleFileSelect, currentPDF, isUploa
                     <li>Add customized rules</li>
             </Text>
             <Spacer y={1} />
-            <Divider/>
-            <Text h4>📈 Subscription</Text>
+            {/* <Divider/> */}
+            {/* <Text h4>📈 Subscription</Text>
                 <li> current plan : <Badge type="secondary">{planDetail.currentSubscription}</Badge>
                 </li>
                 <li> chat usage : {planDetail.chatUsage}
                 </li>
                 <li> File Usage : {planDetail.fileCount}
                 </li>
-                {/* <li> Bamboo Credit : {planDetail.bambooCredit}
-                </li> */}
             <Button auto type="secondary" onClick={postCreateStripeSession}>
                 Plan details
-            </Button>
+            </Button> */}
         </Card>
       </div>
       {isHidden && (

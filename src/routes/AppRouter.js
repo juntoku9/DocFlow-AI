@@ -42,9 +42,9 @@ class AppRouter extends React.Component {
                     <Redirect to="/login" />
                 )} />                
                 <Route exact path="/login" component={Login} />
-                <PrivateRoute path="/chat" component={ChatPage} />
+                {/* <PrivateRoute path="/chat" component={ChatPage} />
                 <PrivateRoute path="/build" component={BuildPractice} />
-                <PrivateRoute path="/vocab" component={VocabPractice} />
+                <PrivateRoute path="/vocab" component={VocabPractice} /> */}
                 <PrivateRoute path="/invoice" component={InvoicePage} />
 
 

@@ -18,7 +18,7 @@ const App =()=> {
         clientId="xSSswTK0wzFnPuuKQT7VfamnAeDtwB8O"
         authorizationParams={{
           audience: AUDIENCE,
-          redirect_uri: `${ENTROPY_FRONTEND_ADDRESS}/build`
+          redirect_uri: `${ENTROPY_FRONTEND_ADDRESS}/invoice`
         }}
       >        
         <BrowserRouter basename='/'>
