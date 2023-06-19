@@ -666,9 +666,9 @@ const InvoicePage = () => {
                     </Card.Header>
                     <div
                         style={{
-                            border: '1px solid rgba(0, 0, 0, 0.3)',
-                            height: '650px',
-                            maxHeight: '650px',
+                            // border: '1px solid rgba(0, 0, 0, 0.3)',
+                            // height: '650px',
+                            // maxHeight: '650px',
                         }}
                     >
                     <Row>

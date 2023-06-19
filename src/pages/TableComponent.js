@@ -28,8 +28,8 @@ const Table = styled.table`
   thead {
     background-color: #fafbfc;
     font-weight: 600;
-    border-left: 1px solid #e0e0e0;
-    border-right: 1px solid #e0e0e0;  
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add box-shadow to the thead */
+    border-radius: 5px; /* optional: add if you want to round corners */
   }
 
   tbody {
@@ -55,6 +55,7 @@ const Table = styled.table`
     cursor: pointer;
     text-transform: uppercase; /* Make header font uppercase */
     width: 100%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add box-shadow to the th */
   }
 `;
 
@@ -108,11 +109,8 @@ const Toolbar = styled.div`
   align-items: center;
   background-color: #fafbfc;
   padding: 0.5rem 1rem;
-  border-top: 1px solid #e0e0e0;
-  border-left: 1px solid #e0e0e0;
-  border-right: 1px solid #e0e0e0;
-  border-bottom: none;
-  border-radius: 5px 5px 0 0;
+  // border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Add box-shadow to the toolbar */
 `;
 
 const ToolbarItems = styled.div`
