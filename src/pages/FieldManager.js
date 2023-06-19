@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react';
-import { Button, Card, Text, Input, Select, Table,useTheme, Badge } from '@geist-ui/react';
+import { Button, Card, Text, Input, Select, Table,useTheme, Badge, Spinner } from '@geist-ui/react';
 import { ENTROPY_BACKEND_ADDRESS } from '../globals/address';
 import { getHeader, buildHeader } from '../functions/headers';
 import { ToastContainer, toast } from 'react-toastify';
+import { Plus } from '@geist-ui/icons'
 
 const FieldsCard = ({authToken, user, currentFileInfo}) => {
   const [fields, setFields] = useState([]);
   const [showForm, setShowForm] = useState(false);
+  const [isProcessing, setIsProcessing] = useState(false);
+
   const [newField, setNewField] = useState({ key: '', type: '' });
   const [responseResult, setResponseResult] = useState([]);
   const theme = useTheme()
@@ -55,6 +58,7 @@ const FieldsCard = ({authToken, user, currentFileInfo}) => {
     console.log(user)
 
     console.log(currentFileInfo)
+    setIsProcessing(true);
     const requestOptions = {
         method: 'POST',
         // mode: 'no-cors',
@@ -68,6 +72,7 @@ const FieldsCard = ({authToken, user, currentFileInfo}) => {
     fetch(`${ENTROPY_BACKEND_ADDRESS}/api/chat/process_document`, requestOptions)
         .then(response => response.json())
         .then(response => {
+            setIsProcessing(false);
             if (response.error_msg){
                 toast.error(response.error_msg, {
                     position: "bottom-right",
@@ -92,9 +97,11 @@ const FieldsCard = ({authToken, user, currentFileInfo}) => {
 
 
   return (
-    <Card>
+    <Card >
+    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
       <Text h3>Fields</Text>
-      <Button type="secondary" onClick={() => setShowForm(!showForm)}>Add</Button>
+      <Button icon={<Plus />} auto type="success" ghost onClick={() => setShowForm(!showForm)}>Add</Button>
+    </div>
       {showForm && (
         <div style={{"marginTop": "10px"}}>
           <Input
@@ -120,8 +127,11 @@ const FieldsCard = ({authToken, user, currentFileInfo}) => {
         <Table.Column prop="value" label="Value" />
         <Table.Column prop="type" label="Type" render={(value, rowData, rowIndex)=>{return <Badge style={{ backgroundColor: theme.palette.secondary }}>{value}</Badge> }}/>
     </Table>
+    <div style={{"marginTop": "10px", display: 'flex', justifyContent: 'flex-end'}}>
+      <Button type="secondary" ghost onClick={processDocument}>Process</Button>
+    </div>
+    {isProcessing? <Spinner style={{"marginLeft":"10px"}}/> : null}
 
-    <Button style={{"marginTop": "10px"}} type="secondary" onClick={processDocument}>Process</Button>
 
 
     </Card>
