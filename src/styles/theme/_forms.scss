@@ -1,0 +1,41 @@
+@import "forms/form-text";
+@import "forms/form-control";
+@import "forms/form-check";
+@import "forms/input-group";
+@import "forms/validation";
+@import "forms/form-group";
+
+
+.space-form{
+    background: #FFFFFF;
+    // opacity: 0.4;
+    /* Ultramarine */
+    border: 1px solid #10098F;
+    border-radius: 10px;
+}
+/* Rectangle 28 */
+
+.space-form-label{
+    font-family: 'Public Sans';
+    font-style: normal;
+    font-weight: 700;
+    // font-size: 16px;
+    line-height: 19px;
+    /* identical to box height */
+
+    /* black */
+    color: #000000;
+}
+/* Logo */
+
+
+/* Line 1 */
+.space-form-divider{
+    width: 940px;
+    opacity: 0.2;
+    /* black */
+    border: 1px solid #000000;
+}
+
+
+

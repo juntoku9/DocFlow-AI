@@ -1,0 +1,36 @@
+//
+// Theme
+//
+// Custom variables followed by theme variables followed by Bootstrap variables
+// to ensure cascade of styles.
+//
+
+// Bootstrap functions
+@import '~bootstrap/scss/functions';
+
+// React variables
+@import 'react-variables';
+
+// Custom variables
+@import 'user-variables';
+
+// Dark mode variables
+@import 'theme/dark/variables-dark';
+
+// Theme variables
+@import 'theme/variables';
+
+// Bootstrap core
+@import '~bootstrap/scss/bootstrap';
+
+// Theme core
+@import 'theme/theme';
+
+// Dark mode overrides
+@import 'theme/dark/overrides-dark';
+
+// Custom core
+@import 'user';
+
+// React
+@import 'react';

@@ -1,0 +1,17 @@
+/* The path depends on the current location of the scss file */
+@import "@chatscope/chat-ui-kit-styles/dist/default/styles.min.css";
+@import "../../../node_modules/@chatscope/chat-ui-kit-styles/themes/default/variables";
+
+// Here you can override variables from the imported file above. Check its source for a list of available variables
+$main-container-border: 1000;
+$color-text: red;
+$conversation-color: pink;
+
+.my-chat-container {
+    background-color: plum;
+    height: 800px;
+    position: relative;
+    border-radius: 5px;
+
+  }
+  

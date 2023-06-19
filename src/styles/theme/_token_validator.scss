@@ -1,0 +1,100 @@
+.verify-box-unverified{
+    text-align:center;
+    background: linear-gradient(90deg, rgba(65, 102, 245, 0) 5.76%, rgba(65, 102, 245, 0.12) 10.87%, rgba(65, 102, 245, 0.1) 35.98%, rgba(65, 102, 245, 0.12) 88.87%, rgba(65, 102, 245, 0) 93.87%);
+    // height: 47px;
+    // border-top: 2px solid #4166F5;
+
+    // border-bottom: 2px solid #4166F5;
+    text-align:center;
+    border-top: 3px solid;
+    border-bottom: 3px solid;
+    border-image: linear-gradient(90deg, rgba(65, 102, 245, 0) 5.76%, rgba(65, 102, 245, 0.12) 10.87%, rgba(65, 102, 245, 0.1) 35.98%, rgba(65, 102, 245, 0.12) 88.87%, rgba(65, 102, 245, 0) 93.87%);
+    border-image-slice: 3;
+    width:700px;
+
+}
+    
+.verify-box-failed{
+    text-align:center;
+    background: linear-gradient(90deg, rgba(203, 27, 69, 0) 5.76%, rgba(203, 27, 69, 0.1) 10.87%, rgba(203, 27, 69, 0.1) 88.87%, rgba(203, 27, 69, 0) 93.87%);
+    // height: 47px;
+    // border-top: 2px solid #4166F5;
+
+    // border-bottom: 2px solid #4166F5;
+    text-align:center;
+    border-top: 3px solid;
+    border-bottom: 3px solid;
+    border-image: linear-gradient(90deg, rgba(203, 27, 69, 0) 5.76%, rgba(203, 27, 69, 0.1) 10.87%, rgba(203, 27, 69, 0.1) 88.87%, rgba(203, 27, 69, 0) 93.87%);
+    border-image-slice: 3;
+    width:700px;
+
+}
+
+.verify-box-success{
+    text-align:center;
+    background: linear-gradient(90deg, rgba(203, 27, 69, 0) 5.76%, rgba(203, 27, 69, 0.1) 10.87%, rgba(203, 27, 69, 0.1) 88.87%, rgba(203, 27, 69, 0) 93.87%);
+    // height: 47px;
+    // border-top: 2px solid #4166F5;
+
+    // border-bottom: 2px solid #4166F5;
+    text-align:center;
+    border-top: 3px solid;
+    border-bottom: 3px solid;
+    border-image: linear-gradient(90deg, rgba(203, 27, 69, 0) 5.76%, rgba(203, 27, 69, 0.1) 10.87%, rgba(203, 27, 69, 0.1) 88.87%, rgba(203, 27, 69, 0) 93.87%);
+    border-image-slice: 3;
+    width:700px;
+
+}
+
+
+.hover-card{
+    &:hover {
+        transform: scale(1.1);
+        transition-duration: 0.2s;
+        cursor: pointer 
+    }
+}
+
+/* Rectangle 6 */
+.wallet-button{
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    border-radius: 54px;
+}
+
+/* Ellipse 2 */
+.circle{
+    // display: flex;
+    width: 10px;
+    height: 10px;
+    background-color: #8FC359;
+    border-radius: 50%;  
+    .text {
+        margin: auto;
+      }
+      
+}
+
+/* Ellipse 2 */
+.checkout-btn{
+    background: #4166F5;
+    border-radius: 54px;
+    font-family: 'Public Sans';
+    font-style: normal;
+    font-weight: 600;
+    color: #FFFFFF;
+    // font-size: 20px;
+    line-height: 24px;
+    /* identical to box height */    
+    border-color: #4166F5;
+}
+
+
+
+
+
+
+
+
+
+
+

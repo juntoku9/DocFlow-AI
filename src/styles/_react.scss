@@ -1,0 +1,262 @@
+//
+// react.scss
+// React specific overrides
+//
+
+// Checklist
+//
+// Required because React Beautiful DnD requires consistent margins
+
+.checklist {
+  margin-top: -$checklist-control-spacer;
+}
+
+.checklist > .checklist-item {
+  margin-top: $checklist-control-spacer;
+}
+
+// Dropdown
+
+.dropdown-card > .dropdown-menu {
+  min-width: $dropdown-card-min-width;
+  padding-top: 0;
+  padding-bottom: 0;
+  background-color: $card-bg;
+  border-color: $dropdown-card-border-color;
+}
+
+.dropdown-card > .dropdown-menu .card-header {
+  min-height: $dropdown-card-header-min-height;
+}
+
+.dropdown-card > .dropdown-menu .card-body {
+  max-height: $dropdown-card-body-max-height;
+  overflow-y: auto;
+}
+
+// Dropzone
+
+.dz-message {
+  transition-property: border-color, color;
+}
+
+// Flatpickr
+
+.kanban-add-form .flatpickr-input {
+  width: 12ch;
+}
+
+// Highlight
+
+.hljs {
+  padding: 0 !important;
+  background-color: inherit !important;
+}
+
+pre {
+  margin-bottom: 0;
+}
+
+// Icon
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1em * $line-height-base;
+  min-height: 1em * $line-height-base;
+}
+
+.icon.active > .feather {
+  mask-image: url(#{$path-to-img}/masks/icon-status.svg);
+  mask-size: 100% 100%;
+}
+
+// Kanban
+
+.kanban-item-dragging > .card {
+  transform: rotateZ(-3deg);
+  transition: $transition-base;
+  transition-property: transform;
+}
+
+.kanban-item-dragging.kanban-item-dropped > .card {
+  transform: rotateZ(0deg);
+}
+
+// List
+
+.list-alert:not(.show) {
+  pointer-events: auto;
+}
+
+// Modals
+
+.modal-lighter .modal-content {
+  background-color: $lighter;
+}
+
+// Navbar
+
+.navbar:not(.navbar-vertical-sm) .navbar-nav .nav-link > .feather:not(.nav-chevron) {
+  margin-right: calc(#{$navbar-icon-min-width} - #{$font-size-lg});
+  margin-bottom: calc((#{$line-height-base} * 1em - #{$font-size-lg}) / 2);
+}
+
+.navbar-expand {
+  @each $breakpoint, $value in $grid-breakpoints {
+    &-#{$breakpoint} {
+      @include media-breakpoint-up(#{$breakpoint}) {
+        .navbar-collapse {
+          opacity: 1 !important;
+          height: auto !important;
+          overflow: visible !important;
+        }
+      }
+    }
+  }
+}
+
+// Navs
+
+.nav-chevron {
+  transition: $transition-base;
+  transform-origin: center center;
+}
+
+.nav-chevron.active {
+  transform: rotate(-180deg);
+}
+
+.list-group-flush .list-group-item[href]:hover {
+  background-color: transparent;
+}
+
+.list-group-flush .list-group-item[href]:focus {
+  background-color: transparent;
+}
+
+// Pagination
+
+.page-item.disabled .page-link,
+.page-item.disabled .page {
+  background-color: transparent;
+}
+
+// Root
+
+[role='button'] {
+  cursor: pointer;
+}
+
+// Select
+
+.select__control--menu-is-open {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.select__indicators {
+  display: none;
+}
+
+.select__input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.select__menu {
+  display: block !important;
+  min-width: 100%;
+  margin-top: -$input-border-width !important;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.select__menu:not(.dropdown-menu-sm) .select__option,
+.select__menu:not(.dropdown-menu-sm) .select__option {
+  padding-left: $input-padding-x;
+  padding-right: $input-padding-x;
+}
+
+.select__menu .select__option--is-focused {
+  background-color: $dropdown-link-active-bg;
+  color: $dropdown-link-active-color;
+}
+
+.select__option {
+  cursor: pointer;
+}
+
+.select__placeholder {
+  color: $input-placeholder-color;
+}
+
+.select__value-container {
+  position: relative;
+  display: flex;
+}
+
+.select__multi-value {
+  display: inline-flex !important;
+  margin: 0 0.2rem 0 0 !important;
+  padding-right: 0.375rem;
+  padding-left: 0.375rem;
+
+  background-color: $light !important;
+  border-radius: $border-radius-xs !important;
+}
+
+.select__multi-value:hover {
+  cursor: pointer;
+}
+
+.select__multi-value__label {
+  padding: 0 !important;
+  border-radius: 0 !important;
+  font-size: $font-size-sm !important;
+  color: $body-color !important;
+}
+
+.select__multi-value__remove {
+  width: 0.5rem;
+  margin-left: 0.5rem;
+  padding: 0;
+  outline: none;
+  border-width: 0;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-image: url(escape-svg(
+    "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='#{$body-color}' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><line x1='18' y1='6' x2='6' y2='18'></line><line x1='6' y1='6' x2='18' y2='18'></line></svg>"
+  ));
+  background-size: 100% auto;
+  text-indent: -9999px;
+  opacity: 0.5;
+  transition: $input-transition;
+}
+
+.select__multi-value__remove > svg {
+  display: none;
+}
+
+.select__multi-value:hover > .select__multi-value__remove {
+  background-color: transparent;
+  opacity: 1;
+}
+
+// Tables
+
+.is-sortable {
+  white-space: nowrap;
+}
+
+.is-sortable::after {
+  content: str-replace(
+    url("data:image/svg+xml;utf8,<svg width='6' height='10' viewBox='0 0 6 10' fill='none' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M3 0L6 4H0L3 0ZM3 10L0 6H6L3 10Z' fill='#{$text-muted}'/></svg>"), '#', '%23'
+  );
+  margin-left: 0.25rem;
+}

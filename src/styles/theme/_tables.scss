@@ -1,0 +1,153 @@
+// // //
+// // // tables.scss
+// // // Extended from Bootstrap
+// // //
+// //
+// // //
+// // // Bootstrap Overrides =====================================
+// // //
+// //
+
+// .table thead th {
+//   background-color: $table-head-bg;
+//   font-size: $font-size-base;
+//   font-weight: $font-weight-bold;
+//   letter-spacing: .08em;
+//   color: $table-head-color;
+//   border: 1px solid #ccc;
+// }
+
+// .table thead th, tbody th, tbody td {
+//   vertical-align: middle;
+//   border: 1px solid #ccc
+// }
+
+// .table td, .table th {
+//   border-top: $table-border-width solid $table-border-color;
+//   border-bottom: 0;
+//   border-radius: 0;
+//   border: 1px solid #ccc;
+
+// }
+
+// .table tbody tr:nth-child(even) {
+//   background-color: #f2f2f2; /* Set even rows to light gray */
+// }
+
+// .table tbody tr:nth-child(odd) {
+//   background-color: #fff; /* Set odd rows to white */
+// }
+
+
+// .table > :not(:first-child) {
+//   border-top: 0;
+// }
+
+
+// // Sizing
+
+// .table-sm {
+//   font-size: $font-size-sm;
+// }
+
+// .table-sm thead th {
+//   font-size: $font-size-xs;
+// }
+
+
+// //
+// // Theme =====================================
+// //
+
+// // No wrap
+// //
+// // Prevents table content from wrapping to the next line
+
+// .table-nowrap {
+
+//   th, td {
+//     white-space: nowrap;
+//   }
+// }
+
+
+// // Sort
+// //
+// // Adds sorting icons
+
+// .table [data-sort] {
+//   white-space: nowrap;
+
+//   &::after {
+//     content: str-replace(url("data:image/svg+xml;utf8,<svg width='6' height='10' viewBox='0 0 6 10' fill='none' xmlns='http://www.w3.org/2000/svg'><path fill-rule='evenodd' clip-rule='evenodd' d='M3 0L6 4H0L3 0ZM3 10L0 6H6L3 10Z' fill='#{$text-muted}'/></svg>"), "#", "%23");
+//     margin-left: .25rem;
+//   }
+// }
+
+
+// // Linksto
+
+// .table a[class*="text-reset"]:hover {
+//   color: $link-color !important;
+// }
+
+// /* tableStyles.css */
+
+// .table-container {
+//   width: 50%;
+//   margin: 2rem auto;
+//   border-collapse: collapse;
+//   font-size: 0.9rem;
+//   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+//   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+//   overflow: hidden;
+//   border-radius: 5px;
+// }
+
+// .material-react-table thead tr {
+//   background-color: #3f51b5;
+//   color: #ffffff;
+//   text-align: left;
+// }
+
+// .material-react-table th,
+// .material-react-table td {
+//   padding: 0.75rem;
+// }
+
+// .material-react-table tbody tr {
+//   border-bottom: 1px solid #dddddd;
+// }
+
+// .material-react-table tbody tr:nth-of-type(even) {
+//   background-color: #f3f3f3;
+// }
+
+// .material-react-table tbody tr:last-of-type {
+//   border-bottom: 2px solid #3f51b5;
+// }
+
+// .material-react-table tbody tr.active-row {
+//   font-weight: bold;
+//   color: #3f51b5;
+// }
+
+// .button-container {
+//   display: flex;
+//   gap: 1rem;
+//   padding: 4px;
+// }
+
+// .button-secondary {
+//   background-color: #3f51b5;
+//   color: #ffffff;
+//   border: none;
+//   padding: 0.5rem 1rem;
+//   border-radius: 5px;
+//   cursor: pointer;
+//   transition: background-color 0.3s ease;
+// }
+
+// .button-secondary:hover {
+//   background-color: #283593;
+// }

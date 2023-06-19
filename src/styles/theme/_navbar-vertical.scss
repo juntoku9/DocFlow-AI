@@ -1,0 +1,83 @@
+//
+// navbar.scss
+// Extended from Bootstrap
+//
+
+
+//
+// Bootstrap Overrides =======================
+//
+
+// the content part for tools 
+.tools-content {
+  margin-top: 20px;
+  // min-height: 200px;
+  // margin-left: 150px;
+  // font-family: "public sans";
+}
+
+/* Group 2 */
+.space-btn{
+  background: #4166F5;
+  border-radius: 54px;
+  
+  color: #FFFFFF;
+}
+
+.navbar-tools {
+  margin-top: 20px;
+  margin-left: 50px;
+  // border-width: 0 0 $border-width 0;
+  // border-style: solid;
+  // .navlink-tools{
+  //   font-family: 'Public Sans';
+  //   font-style: normal;
+  //   font-weight: 400;
+  //   // font-size: 24px;
+  //   line-height: 28px;
+    
+  //   color: #000000;
+  // }
+  // .navlink-tools-selected{
+  //   font-family: 'Public Sans';
+  //   font-style: normal;
+  //   font-weight: 400;
+  //   // font-size: 24px;
+  //   line-height: 28px;
+    
+  //   color: yellow;
+  // }
+  .nav-link-brand{
+    margin-bottom:  10px;
+  }
+
+  .nav-link{
+    font-family: "public sans";
+    font-size: 20px; 
+
+    &:active {
+      // background: black;
+      font-weight: bold;
+      color: white; 
+    }
+
+    // &:visited {
+    //   background: black;
+    //   font-weight: bold;
+    //   color: white
+    // }
+        
+    &:not(.active) {
+      font-family: "public sans";
+      font-weight: normal;
+      // color: $blue-600;
+      color: black;
+
+      // &:hover {
+      //   color: $gray-800;
+      //   font-weight: bold;
+      // }
+    }
+  }
+  
+}
