@@ -14,7 +14,7 @@ const Navigation =()=> {
   const renderLogo=()=> {
     return (
       <Navbar.Brand style={{"height": "30rem" }} className="mt-3">
-        <Image className="navbar-brand-img" src="/img/logos/pandaGPT.png" alt="..." />
+        <Image className="navbar-brand-img" src="/img/logos/app_logo_brand.png" alt="..." />
       </Navbar.Brand>
     );
   }
