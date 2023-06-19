@@ -407,8 +407,6 @@ const InvoicePage = () => {
               console.log(response)
                 setPlanDetail({usage: response.usage, bambooCredit: response.bamboo_credit,
                    chatUsage: response.chat_usage, fileCount: response.file_count, currentSubscription: response.current_subscription})
-                // this.setState({uploadedFiles:response['files']})
-                // this.setState({analyticsDetail:response, visitHistory:response.visit_history})
             });
     }
     
