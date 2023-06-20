@@ -33,7 +33,7 @@ const FileUploadModal = ({isModalOpen, setIsModalOpen, handleFileSelect, isUploa
           </Select>
           <Text h3 style={{marginTop:"10px"}}> Upload file</Text>
           <Text>{currentPDF? currentPDF.name:""}</Text>
-          <Dropzone onDrop={(event)=>handleFileSelect(event)}>
+          <Dropzone onDrop={(event)=>handleFileSelect(event, language)}>
             {({ getRootProps, getInputProps }) => (
                 <section>
                 <div {...getRootProps()} style={{border: '2px dashed #e0e0e0', borderRadius: '8px', padding: '1rem', textAlign: 'center'}}>

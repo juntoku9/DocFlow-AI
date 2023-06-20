@@ -217,7 +217,7 @@ const InvoicePage = () => {
             )
     }
 
-    const uploadAndProcessFile=(inputFile)=>{
+    const uploadAndProcessFile=(inputFile, language)=>{
         // put up the loading state on the bar
         setIsUploadingFile(true)
         console.log()
@@ -225,6 +225,8 @@ const InvoicePage = () => {
         data.append("file", inputFile);
         data.append("sub", user.sub);
         data.append("file_size",  inputFile.size)
+        data.append("language",  language)
+
         // data.append('properties', JSON.stringify(properties));
         console.log(`${ENTROPY_BACKEND_ADDRESS}/api/chat/upload_document`)
         axios.post(`${ENTROPY_BACKEND_ADDRESS}/api/chat/upload_document`,
@@ -535,7 +537,7 @@ const InvoicePage = () => {
         )
     }
 
-    const handleFileSelect = (event) => {
+    const handleFileSelect = (event, language) => {
         console.log("file selected", event[0])
         var fileSizeMB = event[0].size/(1024*1024) 
         if (fileSizeMB > 100){
@@ -567,7 +569,7 @@ const InvoicePage = () => {
         setUploadedPDF(event[0])
         setFileSize(event[0].size)
         // upload file 
-        uploadAndProcessFile(event[0])
+        uploadAndProcessFile(event[0], language)
     }
     
 
