@@ -57,16 +57,19 @@ const VerticalSidebar = ({authToken, user, handleFileSelect, currentPDF, isUploa
     <>
       <div
         style={{
-          display: isHidden ? 'none' : 'block',
-          width: '100%',
-          height: '75vh',
-          top: 0,
-          left: 0,
+          position: 'fixed',  // fixes the position
+          left: 0,  // aligns to the very left
+          top: '80px',  // adjust this to the height of your top bar
+          width: '25vh',  // you may adjust the width to your preference
+          height: '100vh',  // takes up the full height
           zIndex: 100,
+          display: isHidden ? 'none' : 'flex',
+          flexDirection: 'column',
           transition: 'all 0.3s ease-in-out',
+          backgroundColor: '#f6f6f6',
         }}
       >
-        <Card shadow style={{ padding: '1rem', height: '100%'}}>
+        <Card shadow style={{ padding: '1rem', height: '100%', backgroundColor: '#f6f6f6'}}>
         <div
             style={{
                 display: 'flex',

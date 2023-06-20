@@ -426,7 +426,7 @@ const InvoicePage = () => {
                                     file_id: fileID
             })
         };
-        fetch(`${ENTROPY_BACKEND_ADDRESS}/api/chat/delete_file`, requestOptions)
+        fetch(`${ENTROPY_BACKEND_ADDRESS}/api/chat/delete_document`, requestOptions)
             .then(response => response.json())
             .then(response => {
                 console.debug(response)
@@ -697,6 +697,17 @@ const InvoicePage = () => {
     return (
         <>
                 <Navigation />
+                <VerticalSidebar 
+                                authToken={authToken} 
+                                user={user} 
+                                handleFileSelect={handleFileSelect} 
+                                currentPDF={uploadedPDF} 
+                                isUploadingFile={isUploadingFile}
+                                setIsHiddenParent={setIsHiddenParent}
+                                planDetail={planDetail}
+                                setModalIsOpen={setModalIsOpen}
+                                />
+
                 <div className="main-content">
                     <SubscriptionPopup 
                         authToken={authToken} 
@@ -707,23 +718,10 @@ const InvoicePage = () => {
                     />
                     <ToastContainer/>
                     <Row>
-                        <Col xl={2}>
-                            {/* {renderSideBar()} */}
-                            <VerticalSidebar 
-                                authToken={authToken} 
-                                user={user} 
-                                handleFileSelect={handleFileSelect} 
-                                currentPDF={uploadedPDF} 
-                                isUploadingFile={isUploadingFile}
-                                setIsHiddenParent={setIsHiddenParent}
-                                planDetail={planDetail}
-                                setModalIsOpen={setModalIsOpen}
-                                />
-                        </Col>
-                        <Col xl={5}>
+                        <Col xl={6}>
                             {showPdfRender? renderPdfPage():renderFiles()}
                         </Col>
-                        <Col xl={5}>
+                        <Col xl={6}>
                             <FieldsCard 
                                 authToken={authToken} 
                                 user={user} 

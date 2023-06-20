@@ -69,7 +69,7 @@ const Navigation =()=> {
 
     return (
       <>
-        <Navbar>
+      <Navbar style={{ position: 'fixed', top: 0, width: '100%', zIndex: 101, height: '80px' }}>
           <Container fluid className='px-5'>
               <div className='d-flex flex-row' style={{"margin-left": "20px"}}>
                 <div className='px-3'>
