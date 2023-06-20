@@ -84,7 +84,12 @@ const VerticalSidebar = ({authToken, user, handleFileSelect, currentPDF, isUploa
         <Divider/>
         <Spacer y={1} />
           <Text h4>📘 1.Upload a file</Text>
-            <Text>{currentPDF? currentPDF.name:""}</Text>
+            <Text>
+                      <li>Only PDF files allowed for now</li>
+                      <li>Select the input language of the file</li>
+              </Text>
+
+            {/* <Text>{currentPDF? currentPDF.name:""}</Text>
             <Dropzone onDrop={(event)=>handleFileSelect(event)}>
             {({ getRootProps, getInputProps }) => (
                 <section>
@@ -98,7 +103,7 @@ const VerticalSidebar = ({authToken, user, handleFileSelect, currentPDF, isUploa
             {
                 isUploadingFile==false? <></>:
                 <Spinner className = "mt-3" animation="border" variant="dark" />
-            }
+            } */}
             <Divider/>
             <Spacer y={1} />
             <Text h4>📝 2. Define the fields to extract</Text>

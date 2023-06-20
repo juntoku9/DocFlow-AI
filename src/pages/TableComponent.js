@@ -2,10 +2,62 @@ import React, { useMemo, useState } from "react";
 import { useTable, usePagination, useGlobalFilter, useSortBy } from "react-table";
 import { css } from "@emotion/react";
 import styled from "@emotion/styled";
-import {Button} from '@geist-ui/react'
 import { RefreshCw, Plus, Filter } from '@geist-ui/icons'
+import { Modal, Select, Button, Text, Spinner } from '@geist-ui/react';
+import { Dropzone } from '../components1/vendor/Dropzone';
 
 // design source: https://chat.openai.com/chat/915d25ba-27a5-41ec-ac49-7ffa1044d1eb
+const FileUploadModal = ({isModalOpen, setIsModalOpen, handleFileSelect, isUploadingFile, currentPDF}) => {
+  const [language, setLanguage] = useState('english');
+
+  const closeModal = () => setIsModalOpen(false);
+  const onLanguageChange = (value) => setLanguage(value);
+  
+  // Handle file upload
+  const handleUpload = (files) => {
+    console.log(files);
+    // Here you would handle the uploaded files
+  }
+
+  return (
+    <>
+      <Modal visible={isModalOpen} onClose={closeModal}>
+        <Modal.Title>Upload File</Modal.Title>
+        <Modal.Content>
+          <Text h3> Language Config</Text>
+          <Select value={language} onChange={onLanguageChange} placeholder="Select a language">
+            <Select.Option value="english">English</Select.Option>
+            <Select.Option value="french">French</Select.Option>
+            <Select.Option value="japanese">Japanese</Select.Option>
+            <Select.Option value="chinese">Chinese</Select.Option>
+          </Select>
+          <Text h3 style={{marginTop:"10px"}}> Upload file</Text>
+          <Text>{currentPDF? currentPDF.name:""}</Text>
+          <Dropzone onDrop={(event)=>handleFileSelect(event)}>
+            {({ getRootProps, getInputProps }) => (
+                <section>
+                <div {...getRootProps()} style={{border: '2px dashed #e0e0e0', borderRadius: '8px', padding: '1rem', textAlign: 'center'}}>
+                    <input {...getInputProps()} />
+                    <p>Drag and drop files here, or click to select files</p>
+                </div>
+                </section>
+            )}
+            </Dropzone>
+            {
+                isUploadingFile==false? <></>:
+                <Spinner className = "mt-3" animation="border" variant="dark" />
+            }
+
+          {/* <Upload onChange={handleUpload} multiple={false} accept=".pdf">
+            <Button auto>Select file</Button>
+          </Upload> */}
+        </Modal.Content>
+        <Modal.Action passive onClick={closeModal}>Cancel</Modal.Action>
+        <Modal.Action onClick={handleUpload}>Submit</Modal.Action>
+      </Modal>
+    </>
+  );
+};
 
 const SortIcon = styled.span`
   display: inline-block;
@@ -143,7 +195,8 @@ const RefreshButton = styled.button`
 
 
 
-const TableComponent = ({ columns, data, refreshTable }) => {
+const TableComponent = ({ columns, data, handleFileSelect, refreshTable, isUploadingFile, currentPDF }) => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
     const {
       getTableProps,
       getTableBodyProps,
@@ -178,6 +231,13 @@ const TableComponent = ({ columns, data, refreshTable }) => {
     
     return (
       <div>
+        <FileUploadModal
+          isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
+          handleFileSelect={handleFileSelect}
+          isUploadingFile={isUploadingFile}
+          currentPDF={currentPDF}
+        />
         <Toolbar>
           <SearchBar
             type="text"
@@ -186,9 +246,14 @@ const TableComponent = ({ columns, data, refreshTable }) => {
             onChange={handleFilterChange}
           />
             <ToolbarItems>
-                <RefreshCw style={{ marginRight: "1rem", "curosor": "pointer" }} onClick={handleRefresh}/>
+                <Button ghost auto style={{ marginRight: "1rem" }} onClick={handleRefresh}>Refresh</Button>
                 {/* <FontAwesomeIcon icon={faFilter} style={{ marginRight: "1rem" }} /> */}
             </ToolbarItems>
+            <ToolbarItems>
+                <Button ghost auto type="success" style={{ marginRight: "1rem" }} onClick={()=>{setIsModalOpen(true)}}>Upload File</Button>
+                {/* <FontAwesomeIcon icon={faFilter} style={{ marginRight: "1rem" }} /> */}
+            </ToolbarItems>
+
           {/* <Button onClick={handleRefresh} variant="primary">Refresh</Button> */}
           {/* Add more toolbar items here */}
         </Toolbar>

@@ -512,6 +512,9 @@ const InvoicePage = () => {
         return (
             <TableComponent 
                 refreshTable={listUploadedFiles}
+                handleFileSelect={handleFileSelect} 
+                currentPDF={uploadedPDF} 
+                isUploadingFile={isUploadingFile}
                 columns={[
                     { Header: 'File Name', accessor: 'title',
                         // accessorFn: rowData => (<Button variant="link" style={{"color":"black"}} onClick={()=>{handleORowClick(rowData)}}>🔗<strong>{" "+rowData.title}</strong></Button>), 
