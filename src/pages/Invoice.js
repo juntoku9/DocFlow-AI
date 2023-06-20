@@ -659,7 +659,7 @@ const InvoicePage = () => {
                     <Card.Header>
                         <Row>
                             <Col>
-                                <Button shadow onClick={()=>setShowPdfRender(false)}>Files</Button>
+                                <Button icon={<ArrowLeft />} ghost type="secondary" onClick={()=>setShowPdfRender(false)}>Files</Button>
                             </Col>
                         {/* <Button variant="dark" onClick={()=>{this.setState({showPdfRender:false})}}>Close</Button> */}
                         </Row>

@@ -104,6 +104,8 @@ const FieldsCard = ({authToken, user, currentFileInfo}) => {
       <Button icon={<Delete />} auto type="secondary" ghost onClick={() => setFields([])}>Clear</Button>
       <Button icon={<Plus/>} auto type="success" ghost onClick={() => setShowForm(!showForm)}>Add</Button>
     </div>
+    <Text style={{"marginTop": "10px"}} h4>Selected file: {currentFileInfo.file}</Text>
+
       {showForm && (
         <div style={{"marginTop": "10px"}}>
           <Input
