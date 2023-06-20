@@ -114,13 +114,16 @@ const FieldsCard = ({authToken, user, currentFileInfo}) => {
             onChange={handleInputChange}
             placeholder="Enter the field you want to extract"
             width="100%"
+            style={{fontSize: '18px'}} //adjust this value to make the font bigger or smaller
           />
           <Select 
             name="String" 
-            style={{"marginTop": "10px"}}
-            value={newField.type} onChange={handleTypeChange} placeholder="String" width="100%">
-            <Select.Option value="String">String</Select.Option>
-            <Select.Option value="Number">Number</Select.Option>
+            style={{"marginTop": "10px", fontSize: '18px'}}
+            value={newField.type} 
+            onChange={handleTypeChange} 
+            placeholder="String" width="100%">
+            <Select.Option value="String" style={{fontSize: '18px'}}>String</Select.Option>
+            <Select.Option value="Number" style={{fontSize: '18px'}}>Number</Select.Option>
           </Select>
           <Button style={{"marginTop": "10px"}} type="success" onClick={handleAddField}>Submit</Button>
         </div>
