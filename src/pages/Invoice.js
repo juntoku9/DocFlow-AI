@@ -655,7 +655,7 @@ const InvoicePage = () => {
         var startPage = (currentFileInfo.sourceInfo==null? 0:currentFileInfo.sourceInfo.page)
         return (
             <div style={{width:"100%"}}>
-                <Card>
+                <Card >
                     <Card.Header>
                         <Row>
                             <Col>
@@ -666,9 +666,13 @@ const InvoicePage = () => {
                     </Card.Header>
                     <div
                         style={{
+                            width: "100%",
+                            height: "800px",
+                            overflow: "auto",
                             // border: '1px solid rgba(0, 0, 0, 0.3)',
-                            // height: '650px',
-                            // maxHeight: '650px',
+                            // borderBottom: '1px solid black',
+                            // boxShadow: "0px 0px 2px 2px rgba(0, 0, 0, 0.3)"
+
                         }}
                     >
                     <Row>
@@ -682,6 +686,7 @@ const InvoicePage = () => {
                     <Viewer key={pdfViewerKey}
                             fileUrl={currentFileInfo.pdfURL} 
                             initialPage={startPage}
+                            defaultScale={1}
                             plugins={[searchPluginInstance, getFilePluginInstance, highlightPluginInstance]}/>
                 </div>
                 </Card>
