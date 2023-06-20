@@ -3,14 +3,14 @@ import { Button, Card, Text, Input, Select, Table,useTheme, Badge, Spinner } fro
 import { ENTROPY_BACKEND_ADDRESS } from '../globals/address';
 import { getHeader, buildHeader } from '../functions/headers';
 import { ToastContainer, toast } from 'react-toastify';
-import { Plus } from '@geist-ui/icons'
+import { Plus, Delete } from '@geist-ui/icons'
 
 const FieldsCard = ({authToken, user, currentFileInfo}) => {
   const [fields, setFields] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
 
-  const [newField, setNewField] = useState({ key: '', type: '' });
+  const [newField, setNewField] = useState({ key: '', type: 'String' });
   const [responseResult, setResponseResult] = useState([]);
   const theme = useTheme()
 
@@ -100,7 +100,8 @@ const FieldsCard = ({authToken, user, currentFileInfo}) => {
     <Card >
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
       <Text h3>Fields</Text>
-      <Button icon={<Plus />} auto type="success" ghost onClick={() => setShowForm(!showForm)}>Add</Button>
+      <Button icon={<Delete />} auto type="secondary" ghost onClick={() => setFields([])}>Clear</Button>
+      <Button icon={<Plus/>} auto type="success" ghost onClick={() => setShowForm(!showForm)}>Add</Button>
     </div>
       {showForm && (
         <div style={{"marginTop": "10px"}}>
