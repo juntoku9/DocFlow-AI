@@ -14,7 +14,7 @@ export const postCreateUser = async (emailAddress, walletAddress, accessToken) =
             sub: walletAddress
         })
     };
-    const response = await fetch(`${ENTROPY_BACKEND_ADDRESS}/api/user/create`, requestOptions);
+    const response = await fetch(`${ENTROPY_BACKEND_ADDRESS}/api/user/create_user_clerk`, requestOptions);
     return await response.json();
 }
 

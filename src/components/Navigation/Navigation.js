@@ -1,14 +1,26 @@
 import React, { useEffect } from 'react';
-import { withRouter, NavLink } from 'react-router-dom';
+// import { withRouter, NavLink } from 'react-router-dom';
 import { Container, Dropdown, Nav, Navbar, Image, Button, Row, Col } from 'react-bootstrap';
 import { useAuth0 } from "@auth0/auth0-react";
 import { ENTROPY_FRONTEND_ADDRESS, ENTROPY_BACKEND_ADDRESS } from '../../globals/address';
 import {postCreateUser} from "../../functions/login";
+import { useAuth, useUser } from "@clerk/clerk-react";
+import {
+  ClerkProvider,
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserButton
+} from "@clerk/clerk-react";
 
 const Navigation =()=> {
   const [signedIn, setSignedIn] = React.useState(false);
-  const { loginWithRedirect } = useAuth0();
-  const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
+  // const { loginWithRedirect } = useAuth0();
+  // const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
+  const { isLoaded, isAuthenticated, user } = useUser();
+  const { getToken } = useAuth();
+
+
   const { logout } = useAuth0();
 
   const renderLogo=()=> {
@@ -22,16 +34,18 @@ const Navigation =()=> {
   useEffect(() => {
     const getUserMetadata = async () => {      
       try {
-        const accessToken = await getAccessTokenSilently();
+        const accessToken = await getToken()
         //set the access token to the header
+        // console.log(accessToken)
         postCreateUser(user.email, user.sub, accessToken)
+
       } catch (e) {
         console.log(e.message);
       }
     };
   
     getUserMetadata();
-  }, [getAccessTokenSilently, user?.sub]);
+  }, [isAuthenticated, user?.sub]);
 
 
   const renderFooter=()=> {
@@ -41,23 +55,35 @@ const Navigation =()=> {
           {/* {this.renderWalletSection()} */}
           <Row>
             <Col xl={6}>
-          <Button href="https://discord.gg/rjeAj2DFY6" target="_blank"
+          {/* <Button href="https://discord.gg/rjeAj2DFY6" target="_blank"
             variant="primary" size="lg" style={{
             backgroundColor: '#7289DA',
             borderColor: '#7289DA',
           }}>
             <strong>Discord</strong>
-          </Button>
+          </Button> */}
           </Col>
           <Col xl={6}>
-            {isAuthenticated? 
+            {/* {isAuthenticated? 
             <Button 
            variant="white" className="text-nowrap" size="lg" onClick={() => logout({ logoutParams: { returnTo: `${ENTROPY_FRONTEND_ADDRESS}/chat` }})}> <strong>Sign Out </strong>
            </Button>:
            <Button 
            variant="white" className="text-nowrap" size="lg" onClick={() => loginWithRedirect()}> <strong>Sign In </strong>
            </Button>
-           }
+           } */}
+            <SignedIn>
+            {/* Mount the UserButton component */}
+            <UserButton 
+             appearance={{
+              userProfile: { elements: { breadcrumbs: "bg-slate-500" } },}}
+            />
+          </SignedIn>
+          <SignedOut>
+            {/* Signed out users get sign in button */}
+            <SignInButton />
+          </SignedOut>
+
           </Col>
           </Row>
         </div>
@@ -83,4 +109,4 @@ const Navigation =()=> {
     );
 }
 
-export default withRouter(Navigation);
+export default Navigation;

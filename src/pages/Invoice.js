@@ -35,8 +35,9 @@ import '@react-pdf-viewer/search/lib/styles/index.css';
 
 import { Button, Link, Collapse, Spacer, Text, useTheme, Page as GeistPage, Grid } from '@geist-ui/react';
 
-import { useAuth0 } from "@auth0/auth0-react";
+// import { useAuth0 } from "@auth0/auth0-react";
 import { RefreshCw, Plus, Filter, Delete } from '@geist-ui/icons'
+import { useAuth, useUser } from "@clerk/clerk-react";
 
 // solve the worker problem
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
@@ -74,12 +75,16 @@ const InvoicePage = () => {
     const pdfViewer = useRef(null);
     const [modalIsOpen, setModalIsOpen] = useState(false);
     // auth related 
-    const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
+    // const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
+    // const { isAuthenticated, userId, sessionId, getToken } = useAuth();
+    const { isLoaded, isAuthenticated, user } = useUser();
+    const { getToken } = useAuth();
 
     useEffect(() => {
         const getUserMetadata = async () => {      
           try {
-            const accessToken = await getAccessTokenSilently();
+            const accessToken = await getToken();
+            console.log(user);
             //set the access token to the header
             setAuthToken(accessToken)
             // setUserMetadata(user_metadata);
@@ -89,13 +94,13 @@ const InvoicePage = () => {
         };
       
         getUserMetadata();
-      }, [getAccessTokenSilently, user?.sub]);
+      }, [isAuthenticated, user?.sub]);
       
 
     useEffect( () => {
         if (authToken){
             listUploadedFiles();
-            fetchPlanStatus(true);
+            // fetchPlanStatus(true);
             // list the initial message 
             // welcome message is not needed
             // const welcomeMsg="welcome to PandaGPT, please upload a file or click on the file title from the right side to start chatting"
@@ -416,7 +421,7 @@ const InvoicePage = () => {
     const SetCurrentChat=(item, showPdf)=>{
         setCurrentFileInfo({file:item.title, fileID:item.id, pdfURL: item.presigned_url, sourceInfo: null, status:item.status})
         setShowPdfRender(showPdf);
-        loadChatHistory(item.id);
+        // loadChatHistory(item.id);
     }
 
     const postDeleteFile=(fileID)=>{
