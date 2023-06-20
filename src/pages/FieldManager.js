@@ -22,6 +22,12 @@ const FieldsCard = ({authToken, user, currentFileInfo}) => {
     setShowForm(false);
   };
 
+  const handleDeleteRow = (index) => {
+    const newFields = [...fields];
+    newFields.splice(index, 1);
+    setFields(newFields);
+  };
+  
   const handleInputChange = (e) => {
     setNewField({
       ...newField,
@@ -133,14 +139,23 @@ const FieldsCard = ({authToken, user, currentFileInfo}) => {
         <Table.Column prop="key" label="Key" render={(value, rowData, rowIndex)=>{return <Badge style={{ backgroundColor: theme.palette.successLight }}>{value}</Badge> }}/>
         <Table.Column prop="value" label="Value" />
         <Table.Column prop="type" label="Type" render={(value, rowData, rowIndex)=>{return <Badge style={{ backgroundColor: theme.palette.secondary }}>{value}</Badge> }}/>
+        <Table.Column label="Action" render={(value, rowData, rowIndex) => (
+        <Button 
+          size="small" 
+          type="error" 
+          ghost
+          auto
+          onClick={() => handleDeleteRow(rowIndex)}
+        >
+          Delete
+        </Button>
+      )}
+    />
     </Table>
     <div style={{"marginTop": "10px", display: 'flex', justifyContent: 'flex-end'}}>
       <Button type="secondary" ghost onClick={processDocument}>Process</Button>
     </div>
     {isProcessing? <Spinner style={{"marginLeft":"10px"}}/> : null}
-
-
-
     </Card>
   );
 };
