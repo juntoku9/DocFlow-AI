@@ -15,12 +15,11 @@ const FieldsCard = ({authToken, user, currentFileInfo}) => {
   const theme = useTheme()
 
   const handleAddField = () => {
-    setFields([...fields, newField]);
-    console.log(fields)
-    // set the new field to default
+    let trimmedKey = newField.key.trim();
+    setFields([...fields, { ...newField, key: trimmedKey }]);
     setNewField({ key: '', type: 'String' });
     setShowForm(false);
-  };
+};
 
   const handleDeleteRow = (index) => {
     const newFields = [...fields];
