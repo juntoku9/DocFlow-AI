@@ -160,7 +160,7 @@ const TableComponent = ({ columns, data, refreshTable }) => {
       {
         columns,
         data,
-        initialState: { pageIndex: 0, pageSize: 6, sortBy: [{ id: "created_at", desc: true }] },
+        initialState: { pageIndex: 0, pageSize: 10, sortBy: [{ id: "created_at", desc: true }] },
       },
       useGlobalFilter,
       useSortBy,

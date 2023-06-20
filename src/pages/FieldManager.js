@@ -104,11 +104,13 @@ const FieldsCard = ({authToken, user, currentFileInfo}) => {
 
   return (
     <Card >
-    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-      <Text h3>Fields</Text>
-      <Button icon={<Delete />} auto type="secondary" ghost onClick={() => setFields([])}>Clear</Button>
-      <Button icon={<Plus/>} auto type="success" ghost onClick={() => setShowForm(!showForm)}>Add</Button>
-    </div>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <Text h3>Fields</Text>
+        <div>
+          <Button icon={<Delete />} auto type="secondary" ghost style={{ marginRight: '10px' }} onClick={() => setFields([])}>Clear</Button>
+          <Button icon={<Plus/>} auto type="success" ghost onClick={() => setShowForm(!showForm)}>Add</Button>
+        </div>
+      </div>
     <Text style={{"marginTop": "10px"}} h4>Selected file: {currentFileInfo.file}</Text>
 
       {showForm && (
@@ -130,7 +132,9 @@ const FieldsCard = ({authToken, user, currentFileInfo}) => {
             <Select.Option value="String" style={{fontSize: '18px'}}>String</Select.Option>
             <Select.Option value="Number" style={{fontSize: '18px'}}>Number</Select.Option>
           </Select>
-          <Button style={{"marginTop": "10px"}} type="success" onClick={handleAddField}>Submit</Button>
+          <div style={{"marginTop": "10px", display: 'flex', justifyContent: 'flex-end'}}>
+            <Button type="success" onClick={handleAddField}>Add</Button>
+          </div>
         </div>
       )}
 
