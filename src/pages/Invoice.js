@@ -715,10 +715,10 @@ const InvoicePage = () => {
                                 setModalIsOpen={setModalIsOpen}
                                 />
                         </Col>
-                        <Col xl={6}>
+                        <Col xl={5}>
                             {showPdfRender? renderPdfPage():renderFiles()}
                         </Col>
-                        <Col xl={4}>
+                        <Col xl={5}>
                             <FieldsCard 
                                 authToken={authToken} 
                                 user={user} 
