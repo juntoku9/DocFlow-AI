@@ -17,7 +17,8 @@ const FieldsCard = ({authToken, user, currentFileInfo}) => {
   const handleAddField = () => {
     setFields([...fields, newField]);
     console.log(fields)
-    setNewField({ key: '', type: '' });
+    // set the new field to default
+    setNewField({ key: '', type: 'String' });
     setShowForm(false);
   };
 
