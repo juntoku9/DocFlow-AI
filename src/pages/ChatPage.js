@@ -93,7 +93,7 @@ const ChatPage = () => {
 
     useEffect( () => {
         if (authToken){
-            fetchPlanStatus(true);
+            // fetchPlanStatus(true);
             // list the initial message 
             // welcome message is not needed
             // const welcomeMsg="welcome to PandaGPT, please upload a file or click on the file title from the right side to start chatting"
@@ -118,7 +118,7 @@ const ChatPage = () => {
         const requestOptions = {
             method: 'POST',
             // mode: 'no-cors',
-            headers: buildHeader(authToken),
+            headers: buildHeader(getT),
             body: JSON.stringify({ question: currentQuestion,
                 sub: user.sub,
                 })

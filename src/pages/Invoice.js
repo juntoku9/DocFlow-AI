@@ -83,7 +83,7 @@ const InvoicePage = () => {
     useEffect(() => {
         const getUserMetadata = async () => {      
           try {
-            const accessToken = await getToken();
+            const accessToken = await getToken({template: "symbolic_backend"});
             console.log(user);
             //set the access token to the header
             setAuthToken(accessToken)
@@ -129,7 +129,7 @@ const InvoicePage = () => {
         return () => clearInterval(interval); // This represents the unmount function, in which you need to clear your interval to prevent memory leaks.
       }, [authToken])
 
-    const postSendQuestion = (currentQuestion) => {
+    const postSendQuestion =  (currentQuestion) => {
         setDisableMessageSending(true)
         const requestOptions = {
             method: 'POST',
