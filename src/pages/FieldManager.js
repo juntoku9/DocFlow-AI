@@ -9,9 +9,13 @@ const FieldsCard = ({authToken, user, currentFileInfo}) => {
   const [fields, setFields] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [isProcessingAction, setIsProcessingAction] = useState(false);
+
 
   const [newField, setNewField] = useState({ key: '', type: 'String' });
   const [responseResult, setResponseResult] = useState([]);
+  const [actionResult, setActionResult] = useState([]);
+  const [customAction, setCustomAction] = useState('');
   const theme = useTheme()
 
   const handleAddField = () => {
@@ -59,12 +63,19 @@ const FieldsCard = ({authToken, user, currentFileInfo}) => {
     }
   }, [responseResult]);  // Run this hook whenever responseResult changes
     
+  
 
-  const processDocument=()=>{
+  const processDocument=(action)=>{
     console.log(user)
 
     console.log(currentFileInfo)
-    setIsProcessing(true);
+    if (action=="extract_information"){
+      setIsProcessing(true);
+    }
+    else{
+      setIsProcessingAction(true);
+    }
+    
     const requestOptions = {
         method: 'POST',
         // mode: 'no-cors',
@@ -72,13 +83,15 @@ const FieldsCard = ({authToken, user, currentFileInfo}) => {
         body: JSON.stringify({ 
             document_id: currentFileInfo.fileID,
             sub: user.sub, 
-            fields: fields
+            fields: fields, 
+            action: action
         })
     };
     fetch(`${ENTROPY_BACKEND_ADDRESS}/api/chat/process_document`, requestOptions)
         .then(response => response.json())
         .then(response => {
             setIsProcessing(false);
+            setIsProcessingAction(false);
             if (response.error_msg){
                 toast.error(response.error_msg, {
                     position: "bottom-right",
@@ -92,7 +105,12 @@ const FieldsCard = ({authToken, user, currentFileInfo}) => {
             else{
                 console.log(response)
                 // iterate through the response and add the fields to the table 
-                setResponseResult(response.result);  // <-- set response result in the state
+                if (response.action == "extract_information"){
+                  setResponseResult(response.result);  // <-- set response result in the state
+                }
+                else{
+                  setActionResult(response.result);  // <-- set response result in the state
+                }
 
                 // console.log(response)
                 // window.open(response.url, '_blank')    
@@ -103,6 +121,7 @@ const FieldsCard = ({authToken, user, currentFileInfo}) => {
 
 
   return (
+    <>
     <Card >
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <Text h3>Fields</Text>
@@ -156,10 +175,45 @@ const FieldsCard = ({authToken, user, currentFileInfo}) => {
     />
     </Table>
     <div style={{"marginTop": "10px", display: 'flex', justifyContent: 'flex-end'}}>
-      <Button type="secondary" ghost onClick={processDocument}>Process</Button>
+      <Button type="secondary" ghost onClick={()=>processDocument("extract_information")}>Process</Button>
     </div>
     {isProcessing? <Spinner style={{"marginLeft":"10px"}}/> : null}
     </Card>
+      
+    <Card style={{marginTop:"10px"}}>
+      <Text h3>Actions</Text>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div>
+            <Button auto type="secondary" ghost style={{ marginRight: '10px' }} onClick={()=>processDocument("summary")}>Make a summary of the invoice</Button>
+            <Button auto type="secondary" ghost onClick={()=>processDocument("tables")}>List All Tables(JSON)</Button>
+          </div>
+        </div>
+      {/* <Text style={{"marginTop": "10px"}} h4>Selected file: {currentFileInfo.file}</Text> */}
+      <div style={{marginTop:"10px"}}>
+        <Input label="Chat"  value={customAction} onChange={(e)=>{setCustomAction(e.target.value)}} placeholder="Customized actions" width="100%" />
+      </div>
+        <div style={{"marginTop": "10px", display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+          <Button type="secondary" ghost onClick={()=>processDocument(customAction)}>Process</Button>
+        </div>
+
+      <div 
+            style={{ 
+              marginTop: '20px', 
+              backgroundColor: '#f6f6f6', 
+              color: 'black', 
+              borderRadius: '5px',
+              padding: '10px',
+              lineHeight: '1.5', // optional line height for better readability
+              whiteSpace: 'pre-wrap', // respect newline characters in text
+              overflowWrap: 'break-word', // break words if needed to prevent overflow
+            }}
+          >
+            {actionResult}
+          </div>
+      {isProcessingAction? <Spinner style={{"marginLeft":"10px", marginTop:"10px"}}/> : null}
+      </Card>
+      </>
+  
   );
 };
 
