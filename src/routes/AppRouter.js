@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { BrowserRouter, Route, Routes, useNavigate} from "react-router-dom";
 
 import { useAuth0 } from '@auth0/auth0-react';
@@ -12,6 +12,7 @@ import {
   SignUp,
   UserButton,
 } from "@clerk/clerk-react";
+import { useAuth, useUser } from "@clerk/clerk-react";
 
 // const PrivateRoute = ({ component: Component, ...rest }) => {
 //     const { isAuthenticated, isLoading } = useAuth0();
@@ -83,6 +84,20 @@ function PublicPage() {
     </>
   );
 }
+const HomePage = () => {
+  const navigate = useNavigate();
+  const { isSignedIn } = useUser();
+  
+  useEffect(() => {
+    if (isSignedIn) {
+      navigate('/invoice');  // Redirect to Invoice page if the user is signed in
+    } else {
+      navigate('/sign-in'); // Redirect to Sign-in page if the user is not signed in
+    }
+  }, [isSignedIn, navigate]);
+  
+  return null;
+}
 
 function ClerkProviderWithRoutes() {
   const navigate = useNavigate();
@@ -94,8 +109,12 @@ function ClerkProviderWithRoutes() {
     >
       <Routes>
       <Route
+        path="*"
+        element={<SignIn routing="path" path="/sign-in" />}
+      />
+      <Route
           path="/"
-          element={<SignIn routing="path" path="/sign-in" />}
+          element={<HomePage routing="path" path="/" />}
         />
         <Route
           path="/sign-in/*"

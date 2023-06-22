@@ -13,7 +13,7 @@ import { ClerkProvider } from "@clerk/clerk-react";
 const App =()=> {
     // fetch the default team id for the user
     return (
-        <BrowserRouter>
+        <BrowserRouter basename='/'>
             <AppRouter />
         </BrowserRouter>
         )
