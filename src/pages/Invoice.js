@@ -156,7 +156,7 @@ const InvoicePage = () => {
             else{
                 setMessages((prevMessages) => [...prevMessages, {"side": "bot", "message": response.answer, "sources": response.sources}])
                 // update plan status 
-                fetchPlanStatus()
+                // fetchPlanStatus()
             }
             // allow message sending again 
             setDisableMessageSending(false)
@@ -264,8 +264,6 @@ const InvoicePage = () => {
             }
             setUploadedPDF(prevState => {return null;});
             setIsUploadingFile(false)
-            // set current file     
-            fetchPlanStatus()
         })
         .catch(err => {
             setIsUploadingFile(false)
